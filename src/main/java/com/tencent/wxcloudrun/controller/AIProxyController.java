@@ -4,6 +4,7 @@ package com.tencent.wxcloudrun.controller;
 import com.tencent.wxcloudrun.dto.MessagePushRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,22 @@ public class AIProxyController {
   @PostMapping(value = "/ai/msg")
   String get(@RequestBody MessagePushRequest request) {
     logger.info("/ai/msg get request");
-    logger.info("ToUser="+ request.getToUserName()+",FromUser="+request.getFromUserName() +",Content="+request.getContent()+",MsgId="+request.getMsgId()+",MsgType="+request.getMsgType());
+    logger.info("ToUser=" + request.getToUserName() + ",FromUser=" + request.getFromUserName() + ",Content=" + request.getContent() + ",MsgId=" + request.getMsgId() + ",MsgType=" + request.getMsgType());
 
-    return "success";
+    JSONObject jsonObject = new JSONObject();
+    try{
+      jsonObject.put("ToUserName", request.getFromUserName());
+      jsonObject.put("FromUserName", request.getToUserName());
+      jsonObject.put("MsgType", "text");
+      jsonObject.put("CreateTime", System.currentTimeMillis());
+      jsonObject.put("Content", "欢迎光顾【智顾宝】");
+      return jsonObject.toString();
+
+    }catch (Exception e) {
+      logger.error("JSON对象组装异常",e);
+      return "success";
+    }
+
   }
 
 
