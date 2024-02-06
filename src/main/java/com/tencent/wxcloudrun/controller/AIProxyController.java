@@ -30,7 +30,9 @@ public class AIProxyController {
    */
   @PostMapping(value = "/ai/msg")
   String get(@RequestBody MessagePushRequest request) {
-    logger.info("/ai/msg get request");
+
+    logger.info("/ai/msg 获得公众号消息转发请求");
+
     logger.info("ToUser=" + request.getToUserName() + ",FromUser=" + request.getFromUserName() + ",Content=" + request.getContent() + ",MsgId=" + request.getMsgId() + ",MsgType=" + request.getMsgType());
 
     JSONObject jsonObject = new JSONObject();
