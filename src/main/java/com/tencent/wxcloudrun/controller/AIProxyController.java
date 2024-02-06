@@ -30,7 +30,7 @@ public class AIProxyController {
   @PostMapping(value = "/ai/msg")
   String get(@RequestBody MessagePushRequest request) {
     logger.info("/ai/msg get request");
-    logger.info("request content"+ request.getContent());
+    logger.info("ToUser="+ request.getToUserName()+",FromUser="+request.getFromUserName() +",Content="+request.getContent()+",MsgId="+request.getMsgId()+",MsgType="+request.getMsgType());
 
     return "success";
   }

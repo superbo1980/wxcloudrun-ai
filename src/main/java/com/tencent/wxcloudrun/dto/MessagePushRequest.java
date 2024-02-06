@@ -5,17 +5,18 @@ import lombok.Data;
 @Data
 public class MessagePushRequest {
 
-  private String ToUserName;
+  private String toUserName;
 
-  private String FromUserName;
+  private String fromUserName;
 
-  private String CreateTime;
+  private String createTime;
 
-  private String MsgType;
+  private String msgType;
 
-  private String Content;
+  private String content;
 
-  private String MsgId;
+  private String msgId;
+
 
 
 }
