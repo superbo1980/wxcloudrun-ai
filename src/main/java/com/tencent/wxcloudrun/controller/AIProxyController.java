@@ -57,7 +57,7 @@ public class AIProxyController {
       jsonObject.put("CreateTime", System.currentTimeMillis());
 
       // 调用chatModel生成聊天内容
-      String answer = chatModel.generate("hello");
+      String answer = chatModel.generate(request.getContent());
 
       jsonObject.put("Content", answer);
       return jsonObject.toString();
