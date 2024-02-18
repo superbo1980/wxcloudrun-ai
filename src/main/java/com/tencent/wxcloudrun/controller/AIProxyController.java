@@ -2,6 +2,7 @@ package com.tencent.wxcloudrun.controller;
 
 
 import com.tencent.wxcloudrun.dto.MessagePushRequest;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.json.JSONObject;
@@ -19,8 +20,21 @@ public class AIProxyController {
 
   final Logger logger;
 
+  private final String openaiKey = "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";
+
+  private final  String baseUrl = "https://api.openai-proxy.com/v1";
+
+  private final  String model = "gpt-3.5-turbo";
+
+  private OpenAiChatModel chatModel;
+
   public AIProxyController() {
     this.logger = LoggerFactory.getLogger(AIProxyController.class);
+    OpenAiChatModel.OpenAiChatModelBuilder builder =  OpenAiChatModel.builder();
+    builder.baseUrl(baseUrl);
+    builder.apiKey(openaiKey);
+    builder.modelName(model);
+    this.chatModel = builder.build();
   }
 
 
@@ -41,7 +55,11 @@ public class AIProxyController {
       jsonObject.put("FromUserName", request.getToUserName());
       jsonObject.put("MsgType", "text");
       jsonObject.put("CreateTime", System.currentTimeMillis());
-      jsonObject.put("Content", "欢迎光顾【智顾宝】");
+
+      // 调用chatModel生成聊天内容
+      String answer = chatModel.generate("hello");
+
+      jsonObject.put("Content", answer);
       return jsonObject.toString();
 
     }catch (Exception e) {
