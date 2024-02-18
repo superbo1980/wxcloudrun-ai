@@ -20,7 +20,7 @@ public class AIProxyController {
 
   final Logger logger;
 
-  private final String openaiKey = "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";
+  private final String openaiKey = "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";
 
   private final  String baseUrl = "https://api.openai-proxy.com/v1";
 
