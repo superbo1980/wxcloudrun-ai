@@ -1,6 +1,11 @@
 package com.tencent.wxcloudrun.controller;
 
 
+import com.alibaba.dashscope.aigc.conversation.Conversation;
+import com.alibaba.dashscope.aigc.conversation.ConversationParam;
+import com.alibaba.dashscope.aigc.conversation.ConversationResult;
+import com.alibaba.dashscope.aigc.generation.GenerationOutput;
+import com.alibaba.dashscope.utils.JsonUtils;
 import com.tencent.wxcloudrun.dto.MessagePushRequest;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
@@ -20,21 +25,31 @@ public class AIProxyController {
 
   final Logger logger;
 
-  private final String openaiKey = "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";
+//  private final String openaiKey = "";
+//
+//  private final  String baseUrl = "https://api.openai-proxy.com/v1";
+//
+//  private final  String model = "gpt-3.5-turbo";
 
-  private final  String baseUrl = "https://api.openai-proxy.com/v1";
+//  private OpenAiChatModel chatModel;
 
-  private final  String model = "gpt-3.5-turbo";
+  private ConversationParam.ConversationParamBuilder builder ;
 
-  private OpenAiChatModel chatModel;
+  private Conversation conversation;
 
   public AIProxyController() {
     this.logger = LoggerFactory.getLogger(AIProxyController.class);
-    OpenAiChatModel.OpenAiChatModelBuilder builder =  OpenAiChatModel.builder();
-    builder.baseUrl(baseUrl);
-    builder.apiKey(openaiKey);
-    builder.modelName(model);
-    this.chatModel = builder.build();
+    conversation = new Conversation();
+    builder =  ConversationParam.builder();
+    builder.apiKey("sk-acc123223beb481d9e0180bbf5d730db");
+    builder.model(Conversation.Models.QWEN_TURBO);
+
+//    OpenAiChatModel.OpenAiChatModelBuilder builder =  OpenAiChatModel.builder();
+//    builder.baseUrl(baseUrl);
+//    builder.apiKey(openaiKey);
+//    builder.modelName(model);
+//    this.chatModel = builder.build();
+
   }
 
 
@@ -57,13 +72,16 @@ public class AIProxyController {
       jsonObject.put("CreateTime", System.currentTimeMillis());
 
       // 调用chatModel生成聊天内容
-      String answer = chatModel.generate(request.getContent());
+//      String answer = chatModel.generate(request.getContent());
 
-      jsonObject.put("Content", answer);
+      builder.prompt(request.getContent());
+      ConversationResult result = conversation.call(builder.build());
+      GenerationOutput output = result.getOutput();
+      jsonObject.put("Content", output.getText());
       return jsonObject.toString();
 
     }catch (Exception e) {
-      logger.error("JSON对象组装异常",e);
+      logger.error("有异常",e);
       return "success";
     }
 
