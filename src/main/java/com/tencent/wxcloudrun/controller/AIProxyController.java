@@ -74,15 +74,17 @@ public class AIProxyController {
 
     logger.info("ToUser=" + request.getToUserName() + ",FromUser=" + request.getFromUserName() + ",Content=" + request.getContent() + ",MsgId=" + request.getMsgId() + ",MsgType=" + request.getMsgType());
 
-    JSONObject jsonObject = new JSONObject();
-    try{
+    asynExecute(request);
 
-      jsonObject.put("touser", request.getFromUserName());
-      jsonObject.put("msgtype", "text");
-      Map<String,String> textValueMap = new HashMap<>();
-      textValueMap.put("content", "API主动回复消息");
-      jsonObject.put("text", textValueMap);
-      customSend(jsonObject);
+//    JSONObject jsonObject = new JSONObject();
+//    try{
+//
+//      jsonObject.put("touser", request.getFromUserName());
+//      jsonObject.put("msgtype", "text");
+//      Map<String,String> textValueMap = new HashMap<>();
+//      textValueMap.put("content", "API主动回复消息");
+//      jsonObject.put("text", textValueMap);
+//      customSend(jsonObject);
 
 
 //      jsonObject.put("CreateTime", System.currentTimeMillis());
@@ -95,24 +97,61 @@ public class AIProxyController {
       // 调用chatModel生成聊天内容
 //      String answer = chatModel.generate(request.getContent());
 
-//      builder.prompt(request.getContent());
-//      ConversationResult result = conversation.call(builder.build());
-//      GenerationOutput output = result.getOutput();
+
 //      jsonObject.put("Content", output.getText());
 //      return jsonObject.toString();
 
-    }catch (Exception e) {
-      logger.error("有异常",e);
-    }
+//    }catch (Exception e) {
+//      logger.error("有异常",e);
+//    }
     return "success";
 
   }
 
-  private  void customSend(JSONObject msgBody) throws Exception{
+  private void asynExecute(MessagePushRequest request) {
+
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        logger.info("异步执行开始");
+
+        try {
+          String answer = callAIModelService(request.getContent());
+          JSONObject wxRequest = buildWxAPIRequest(request.getFromUserName(), answer);
+          String wxResponse = customSend(wxRequest);
+          logger.info("异步执行完成:"+wxResponse);
+
+        } catch (Exception e) {
+          logger.error("异步执行异常", e);
+        }
+      }
+    }).start();
+  }
+
+  private JSONObject buildWxAPIRequest(String fromUserName, String answer) {
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("touser", fromUserName);
+    jsonObject.put("msgtype", "text");
+    Map<String,String> textValueMap = new HashMap<>();
+    textValueMap.put("content", answer);
+    jsonObject.put("text", textValueMap);
+    return jsonObject;
+  }
+
+
+  private  String callAIModelService(String prompt) throws Exception{
+    builder.prompt(prompt);
+    ConversationResult result = conversation.call(builder.build());
+    GenerationOutput output = result.getOutput();
+    return output.getText();
+
+  }
+
+  private  String customSend(JSONObject msgBody) throws Exception{
 
     HttpURLConnection con = null;
     BufferedReader buffer = null;
-    StringBuffer resultBuffer = null;
+    StringBuffer resultBuffer = new StringBuffer();
     PrintWriter out = null;
     URL url = null;
 
@@ -139,8 +178,8 @@ public class AIProxyController {
         while ((line = buffer.readLine()) != null) {
           resultBuffer.append(line);
         }
-        System.out.println("result:" + resultBuffer.toString());
       }
+      return resultBuffer.toString();
   }
 
 //
@@ -148,13 +187,6 @@ public class AIProxyController {
 
     try {
 
-      JSONObject jsonObject = new JSONObject();
-      jsonObject.put("touser", "openid-001");
-      jsonObject.put("msgtype", "text");
-      Map<String,String> textValueMap = new HashMap<>();
-      textValueMap.put("content", "API主动回复消息");
-      jsonObject.put("text", textValueMap);
-      System.out.println(jsonObject.toString());
 
 //      AIProxyController aiProxyController = new AIProxyController();
 //      aiProxyController.builder.prompt("你是一名文学专家，请帮我梳理一下作品《红楼梦》中的人物关系");
