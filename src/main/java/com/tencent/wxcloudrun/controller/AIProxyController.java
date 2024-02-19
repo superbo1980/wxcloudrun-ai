@@ -41,13 +41,6 @@ public class AIProxyController {
     builder =  ConversationParam.builder();
     builder.apiKey("sk-acc123223beb481d9e0180bbf5d730db");
     builder.model(Conversation.Models.QWEN_TURBO);
-
-//    OpenAiChatModel.OpenAiChatModelBuilder builder =  OpenAiChatModel.builder();
-//    builder.baseUrl(baseUrl);
-//    builder.apiKey(openaiKey);
-//    builder.modelName(model);
-//    this.chatModel = builder.build();
-
   }
 
 
@@ -162,12 +155,8 @@ public class AIProxyController {
 
 //
   public static void main(String[] args) {
-
-
     try {
-//      ConversationResult result = aiProxyController.conversation.call(aiProxyController.builder.build());
-//      GenerationOutput output = result.getOutput();
-//      System.out.println(output.getText());
+      System.out.println("你好");
     }catch (Exception e) {
       e.printStackTrace();
     }
