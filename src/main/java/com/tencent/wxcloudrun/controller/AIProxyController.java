@@ -6,7 +6,6 @@ import com.alibaba.dashscope.aigc.conversation.ConversationParam;
 import com.alibaba.dashscope.aigc.conversation.ConversationResult;
 import com.alibaba.dashscope.aigc.generation.GenerationOutput;
 import com.tencent.wxcloudrun.dto.MessagePushRequest;
-import io.github.asleepyfish.util.OpenAiUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.json.JSONObject;
