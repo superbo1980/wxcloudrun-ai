@@ -31,14 +31,6 @@ public class AIProxyController {
 
   final Logger logger;
 
-//  private final String openaiKey = "";
-//
-//  private final  String baseUrl = "https://api.openai-proxy.com/v1";
-//
-//  private final  String model = "gpt-3.5-turbo";
-
-//  private OpenAiChatModel chatModel;
-
   private ConversationParam.ConversationParamBuilder builder ;
 
   private Conversation conversation;
