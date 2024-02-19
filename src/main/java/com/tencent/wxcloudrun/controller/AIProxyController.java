@@ -90,6 +90,10 @@ public class AIProxyController {
 
   }
 
+  /**
+   * 异步执行AI模型调用
+   * @param request
+   */
   private void asynExecute(MessagePushRequest request) {
 
 
