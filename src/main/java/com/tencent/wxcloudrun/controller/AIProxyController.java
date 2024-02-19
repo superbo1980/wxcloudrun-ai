@@ -64,7 +64,7 @@ public class AIProxyController {
       jsonObject.put("ToUserName", request.getFromUserName());
       jsonObject.put("FromUserName", request.getToUserName());
       jsonObject.put("MsgType", "text");
-      jsonObject.put("Content", "AI正在思考中，请稍微...");
+      jsonObject.put("Content", "亲！请稍等片刻，【智顾小宝】正在思考中...");
       jsonObject.put("CreateTime", System.currentTimeMillis());
       return jsonObject.toString();
     }catch (Exception e) {
@@ -86,7 +86,7 @@ public class AIProxyController {
       public void run() {
         logger.info("异步线程Start");
         try {
-          Thread.sleep(500);
+          Thread.sleep(200);
           logger.info("异步线程休眠500ms后开始正式执行");
           String answer = callAIModelService(request.getContent());
           JSONObject wxRequest = buildWxAPIRequest(request.getFromUserName(), answer);
