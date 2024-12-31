@@ -1,5 +1,6 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.alibaba.dashscope.utils.JsonUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +36,19 @@ public class WxLoginController {
    */
   @PostMapping(value = "/common/getUserInfo")
   String getUserInfo(@RequestBody String info, @RequestHeader Map<String, String> header) {
-    String cloudId = info;
+    String cloudId = JsonUtils.parse(info).get("info").toString();
     String appId = header.get("x-wx-from-appid");
     String openId = header.get("x-wx-from-openid");
+
+    logger.info("header string = "+ header.toString());
+
+    if ((StringUtils.isEmpty(appId))){
+      logger.info("x-wx-from-appid为空,尝试从header中获取x-wx-appid");
+      appId = header.get("x-wx-appid");
+    }
+
     if ((StringUtils.isEmpty(openId))){
+      logger.info("x-wx-from-openid为空,尝试从header中获取x-wx-openid");
       openId = header.get("x-wx-openid");
     }
 
