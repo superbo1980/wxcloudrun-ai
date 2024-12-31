@@ -34,7 +34,7 @@ public class WxLoginController {
    * @return API response json
    */
   @PostMapping(value = "/common/getUserInfo")
-  String getUserInfo(@RequestParam String info, @RequestHeader Map<String, String> header) {
+  String getUserInfo(@RequestParam("info") String info, @RequestHeader Map<String, String> header) {
     String cloudId = info;
     String appId = header.get("x-wx-from-appid");
     String openId = header.get("x-wx-from-openid");
