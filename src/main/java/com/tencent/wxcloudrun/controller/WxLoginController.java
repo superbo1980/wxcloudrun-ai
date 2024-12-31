@@ -87,6 +87,9 @@ public class WxLoginController {
     out.flush();
 
     int responseCode = con.getResponseCode();
+
+    logger.info("responseCode = "+ responseCode);
+
     if (responseCode == HttpURLConnection.HTTP_OK) {
       //得到响应流
       InputStream inputStream = con.getInputStream();
@@ -98,6 +101,9 @@ public class WxLoginController {
         resultBuffer.append(line);
       }
     }
+
+    logger.info("resultBuffer = "+ resultBuffer.toString());
+
     return resultBuffer.toString();
   }
 
