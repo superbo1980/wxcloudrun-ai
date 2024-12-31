@@ -36,9 +36,9 @@ public class WxLoginController {
    */
   @PostMapping(value = "/common/getUserInfo")
   String getUserInfo(@RequestBody String info, @RequestHeader Map<String, String> header) {
-    logger.info("info string = "+ info);
+//    logger.info("info string = "+ info);
 
-    String cloudId = JsonUtils.parse(info).get("info").toString();
+    String cloudId = JsonUtils.parse(info).get("info").getAsString();
     String appId = header.get("x-wx-from-appid");
     String openId = header.get("x-wx-from-openid");
 
@@ -109,5 +109,12 @@ public class WxLoginController {
   }
 
 
+  public static void main(String[] args) {
+    String jsonString = "{\n" +
+            "  \"info\": \"87_YDX-ALdQCgI0G9VXBBv-3Ih0DRQ8xThmVXLt1s5ePRgIOECGK0DLndVU92Y\"\n" +
+            "}";
+    String cloudId = JsonUtils.parse(jsonString).get("info").getAsString();
+    System.out.println(cloudId);
+  }
   
 }
