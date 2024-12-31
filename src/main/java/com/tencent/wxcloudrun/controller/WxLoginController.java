@@ -36,11 +36,12 @@ public class WxLoginController {
    */
   @PostMapping(value = "/common/getUserInfo")
   String getUserInfo(@RequestBody String info, @RequestHeader Map<String, String> header) {
+    logger.info("info string = "+ info);
+
     String cloudId = JsonUtils.parse(info).get("info").toString();
     String appId = header.get("x-wx-from-appid");
     String openId = header.get("x-wx-from-openid");
 
-    logger.info("header string = "+ header.toString());
 
     if ((StringUtils.isEmpty(appId))){
       logger.info("x-wx-from-appid为空,尝试从header中获取x-wx-appid");
