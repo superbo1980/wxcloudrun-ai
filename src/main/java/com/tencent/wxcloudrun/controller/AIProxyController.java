@@ -57,6 +57,18 @@ public class AIProxyController {
 
     // 调用AI模型生成聊天内容
     asynExecute(request);
+    // 生成一段排序好的回复
+    try{
+      JSONObject jsonObject = new JSONObject();
+      jsonObject.put("ToUserName", request.getFromUserName());
+      jsonObject.put("FromUserName", request.getToUserName());
+      jsonObject.put("MsgType", "text");
+      jsonObject.put("Content", "亲！请稍等片刻，【智顾小宝】正在思考中...");
+      jsonObject.put("CreateTime", System.currentTimeMillis());
+      return jsonObject.toString();
+    }catch (Exception e) {
+      logger.error("有异常",e);
+    }
 
     // 先实时返回给公众号默认响应
     try{
