@@ -57,7 +57,7 @@ public class WxLoginController {
 
     // 生成一段排序好的回复
     try{
-      getUserInfoFromCloudId(appId,openId,cloudId);
+      return getUserInfoFromCloudId(appId,openId,cloudId);
     }catch (Exception e) {
       logger.error("有异常",e);
     }
