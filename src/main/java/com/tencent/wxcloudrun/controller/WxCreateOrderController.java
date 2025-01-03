@@ -3,7 +3,7 @@ package com.tencent.wxcloudrun.controller;
 import com.alibaba.dashscope.utils.JsonUtils;
 import com.tencent.wxcloudrun.config.R;
 import com.tencent.wxcloudrun.wxpay.WxPayAutoCertificateConfig;
-import com.tencent.wxcloudrun.wxpay.WxPayConfig.WxPayConfig;
+import com.tencent.wxcloudrun.wxpay.WxPayConfig;
 import com.wechat.pay.java.core.notification.NotificationParser;
 import com.wechat.pay.java.core.notification.RequestParam;
 import com.wechat.pay.java.service.payments.jsapi.model.Amount;
@@ -15,6 +15,7 @@ import com.wechat.pay.java.service.payments.model.Transaction;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -36,6 +37,7 @@ public class WxCreateOrderController {
 
   @Resource
   private WxPayConfig wxPayConfig;
+
   @Resource
   private WxPayAutoCertificateConfig wxPayAutoCertificateConfig;
 

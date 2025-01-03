@@ -1,4 +1,4 @@
-package com.tencent.wxcloudrun.wxpay.WxPayConfig;
+package com.tencent.wxcloudrun.wxpay;
 
 import lombok.Data;
 
