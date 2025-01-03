@@ -35,10 +35,10 @@ public class WxCreateOrderController {
 
   final Logger logger;
 
-  @Resource
+  @Autowired
   private WxPayConfig wxPayConfig;
 
-  @Resource
+  @Autowired
   private WxPayAutoCertificateConfig wxPayAutoCertificateConfig;
 
   public WxCreateOrderController() {

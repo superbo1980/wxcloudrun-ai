@@ -1,8 +1,11 @@
 package com.tencent.wxcloudrun.wxpay;
 
 import lombok.Data;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 public class WxPayConfig {
 
     private String appId = "wx41d948fc8f0f64d3";
