@@ -16,14 +16,22 @@ public class WxPayAutoCertificateConfig {
 
 
     public RSAAutoCertificateConfig getRSAAutoCertificateConfig() {
+
+
         RSAAutoCertificateConfig config = new RSAAutoCertificateConfig.Builder()
                 .merchantId(wxPayConfig.getMerchantId())
                 .merchantSerialNumber(wxPayConfig.getMerchantSerialNumber())
-                .privateKeyFromPath(wxPayConfig.getPrivateKeyFromPath())
+                .privateKeyFromPath(wxPayConfig.privateKeyFromPath)
                 .apiV3Key(wxPayConfig.getApiV3Key())
                 .build();
         return config;
     }
+
+    public static void main(String[] args) {
+
+        System.out.println(WxPayConfig.privateKeyFromPath);
+    }
+
 
 
 }
