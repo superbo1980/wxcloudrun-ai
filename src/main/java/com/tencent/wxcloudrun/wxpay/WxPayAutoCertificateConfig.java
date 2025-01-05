@@ -2,8 +2,6 @@ package com.tencent.wxcloudrun.wxpay;
 
 
 import com.wechat.pay.java.core.RSAAutoCertificateConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -11,7 +9,7 @@ import javax.annotation.Resource;
 @Component
 public class WxPayAutoCertificateConfig {
 
-    @Autowired
+    @Resource
     private WxPayConfig wxPayConfig;
 
 

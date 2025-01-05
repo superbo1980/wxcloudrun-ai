@@ -1,7 +1,6 @@
 package com.tencent.wxcloudrun.wxpay;
 
 import lombok.Data;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Data
