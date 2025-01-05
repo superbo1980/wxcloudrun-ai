@@ -12,11 +12,11 @@ public class WxPayConfig {
     private String merchantSerialNumber = "130E303509CC6C7ED2B852C3A7531ED3D951D73C";
     private String apiV3Key = "12345678abcdefgh87654321hgfedcba";
     private String notifyUrl = "https://prod-9g8bk31o2707e168-1324294718.tcloudbaseapp.com/wxpay/payNotify";
+    private String privateKeyFromPath = "/apiclient_key.pem";
 
-    static public String privateKeyFromPath;
-    static {
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        privateKeyFromPath = classloader.getResource("apiclient_key.pem").getPath();
-    }
+//    static {
+//        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+//        privateKeyFromPath = classloader.getResource("apiclient_key.pem").getPath();
+//    }
 
 }
