@@ -19,7 +19,8 @@ public class WxPayAutoCertificateConfig {
         RSAAutoCertificateConfig config = new RSAAutoCertificateConfig.Builder()
                 .merchantId(wxPayConfig.getMerchantId())
                 .merchantSerialNumber(wxPayConfig.getMerchantSerialNumber())
-                .privateKeyFromPath(wxPayConfig.getPrivateKeyFromPath())
+                .privateKey(wxPayConfig.getPrivateKey())
+//                .privateKeyFromPath(wxPayConfig.getPrivateKeyFromPath())
                 .apiV3Key(wxPayConfig.getApiV3Key())
                 .build();
         return config;
