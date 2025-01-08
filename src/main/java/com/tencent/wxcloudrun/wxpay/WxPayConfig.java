@@ -12,7 +12,15 @@ public class WxPayConfig {
     private String merchantSerialNumber = "130E303509CC6C7ED2B852C3A7531ED3D951D73C";
     private String apiV3Key = "12345678abcdefgh87654321hgfedcba";
     private String notifyUrl = "https://prod-9g8bk31o2707e168-1324294718.tcloudbaseapp.com/wxpay/payNotify";
-//    private String privateKeyFromPath = "/apiclient_key.pem";
+    private String publicKeyId = "PUB_KEY_ID_0114537902022025010200388000000952";
+    private String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAufJO8w4oEF+jKy9P2RGJ\n" +
+            "QKU7kbfpYrcaqD0k9Rmtb6kucgyGxYjv5QljKjoYwpCfncUoRQIMxd5HOnFKz/pz\n" +
+            "0+SeYvPlBQAzi3g1naLWk6SDnT15muCCUjCgnpyShOU98s2IrxAH99ilL82uSS09\n" +
+            "FwqNNS1f7QH/7BAi+ZrLGUPBpsChJFuXAdLE5HjxV2jQH7yNRQdHKJXRqh4EomY3\n" +
+            "A1CjdJ2YQH+z3qpaQHCw50NRSkarxgJKOA22Hk5g6TRtsIPRFbiejaMWyHMEzGjP\n" +
+            "tLjW9xMmHvtFl1fvhDJTleBGNkfmxACZ+2rqGUyvrJ9gJNSxRWn7EaOxXiEfvxq8\n" +
+            "fQIDAQAB";
+
     private String privateKey = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDAomfLpHcr/apK\n" +
         "bpK3Nsl1zUjQ6iaelSH2/WbZeva9CtfmKqud4x9VxlcPEYm9rqfxvL6VFdYpuc/D\n" +
         "iSg5turOxwLWuj8UHNIdCIyx5HiwStA1PKzpIecAHlRn+9pC2tskdY4K+EmAHoEj\n" +
@@ -39,6 +47,8 @@ public class WxPayConfig {
         "ksJWg7rDmoYq86PQRuLc0dHJ8M7A97OGgz94Ee+dJMNfdTyDeVY86LVTBrKZEVjc\n" +
         "aYG0XYlvTWDyXEbSCx5BL6x5qOb2Q2KzVbLHplzoA9RYHOZ2Jqgg00AEkVM+7wRd\n" +
         "7Ty+Q3kWtuwAOwIdL516LQ==";
+
+
 
 //    static {
 //        ClassLoader classloader = Thread.currentThread().getContextClassLoader();

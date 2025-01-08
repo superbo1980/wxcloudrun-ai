@@ -1,7 +1,10 @@
 package com.tencent.wxcloudrun.wxpay;
 
 
+import com.wechat.pay.java.core.Config;
 import com.wechat.pay.java.core.RSAAutoCertificateConfig;
+import com.wechat.pay.java.core.RSAConfig;
+import com.wechat.pay.java.core.RSAPublicKeyConfig;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -13,18 +16,31 @@ public class WxPayAutoCertificateConfig {
     private WxPayConfig wxPayConfig;
 
 
-    public RSAAutoCertificateConfig getRSAAutoCertificateConfig() {
+    public RSAPublicKeyConfig getRSAPublicKeyConfig() {
 
 
-        RSAAutoCertificateConfig config = new RSAAutoCertificateConfig.Builder()
+        RSAPublicKeyConfig config = new RSAPublicKeyConfig.Builder()
                 .merchantId(wxPayConfig.getMerchantId())
-                .merchantSerialNumber(wxPayConfig.getMerchantSerialNumber())
                 .privateKey(wxPayConfig.getPrivateKey())
-//                .privateKeyFromPath(wxPayConfig.getPrivateKeyFromPath())
+                .publicKey(wxPayConfig.getPublicKey())
+                .publicKeyId(wxPayConfig.getPublicKeyId())
+                .merchantSerialNumber(wxPayConfig.getMerchantSerialNumber())
                 .apiV3Key(wxPayConfig.getApiV3Key())
                 .build();
         return config;
     }
+
+//    public RSAAutoCertificateConfig getRSAAutoCertificateConfig2() {
+//        Config config = new RSAAutoCertificateConfig.Builder()
+//                .merchantId(wxPayConfig.getMerchantId())
+//                .merchantSerialNumber(wxPayConfig.getMerchantSerialNumber())
+//                .privateKey(wxPayConfig.getPrivateKey())
+//                .publicKey(wxPayConfig.getPublicKey())
+////                .privateKeyFromPath(wxPayConfig.getPrivateKeyFromPath())
+//                .apiV3Key(wxPayConfig.getApiV3Key())
+//                .build();
+//        return config;
+//    }
 
 //    public static void main(String[] args) {
 //

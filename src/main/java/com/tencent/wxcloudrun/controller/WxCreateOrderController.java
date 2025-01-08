@@ -53,7 +53,7 @@ public class WxCreateOrderController {
   @PostMapping(value = "/wxpay/createOrder")
   R createPrepayOrder(@RequestHeader Map<String, String> header) {
 
-    JsapiServiceExtension service = new JsapiServiceExtension.Builder().config(wxPayAutoCertificateConfig.getRSAAutoCertificateConfig()).build();
+    JsapiServiceExtension service = new JsapiServiceExtension.Builder().config(wxPayAutoCertificateConfig.getRSAPublicKeyConfig()).build();
 
     PrepayRequest prepayRequest = new PrepayRequest();
     prepayRequest.setAppid(wxPayConfig.getAppId());
@@ -103,7 +103,7 @@ public class WxCreateOrderController {
             .signType(signatureType)
             .body(body).build();
 
-    NotificationParser notificationParser = new NotificationParser(wxPayAutoCertificateConfig.getRSAAutoCertificateConfig());
+    NotificationParser notificationParser = new NotificationParser(wxPayAutoCertificateConfig.getRSAPublicKeyConfig());
     Transaction transaction = notificationParser.parse(requestParam,Transaction.class);
     Map<String,String> resultMap = new HashMap<>();
 
