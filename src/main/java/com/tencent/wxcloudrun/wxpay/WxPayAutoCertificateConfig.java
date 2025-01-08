@@ -1,12 +1,8 @@
 package com.tencent.wxcloudrun.wxpay;
 
 
-import com.wechat.pay.java.core.Config;
-import com.wechat.pay.java.core.RSAAutoCertificateConfig;
-import com.wechat.pay.java.core.RSAConfig;
 import com.wechat.pay.java.core.RSAPublicKeyConfig;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 
 @Component
