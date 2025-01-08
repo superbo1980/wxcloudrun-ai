@@ -88,6 +88,8 @@ public class WxCreateOrderController {
   @PostMapping(value = "/wxpay/payNotify")
   String payNotify(@RequestBody String body, HttpServletRequest request) {
 
+    logger.info("支付结果通知,body="+ body);
+
     String signature = request.getHeader("Wechatpay-Signature");
     String signatureType = request.getHeader("Wechatpay-Signature-Type");
     String timestamp = request.getHeader("Wechatpay-Timestamp");
@@ -113,8 +115,9 @@ public class WxCreateOrderController {
 
     resultMap.put("code","SUCCESS");
     resultMap.put("message","成功");
-    return JSONObject.valueToString(resultMap);
-
+    String resultStr =  JSONObject.valueToString(resultMap);
+    logger.info("支付结果通知,response="+ resultStr);
+    return resultStr;
 
   }
 
