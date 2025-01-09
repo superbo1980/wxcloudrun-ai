@@ -88,7 +88,7 @@ public class WxCreateOrderController {
   @PostMapping(value = "/wxpay/payNotify")
   String payNotify(@RequestBody String body, HttpServletRequest request) {
 
-    logger.info("支付结果通知,body="+ body);
+//    logger.info("支付结果通知,body="+ body);
 
     String signature = request.getHeader("Wechatpay-Signature");
     String signatureType = request.getHeader("Wechatpay-Signature-Type");
@@ -107,6 +107,9 @@ public class WxCreateOrderController {
     NotificationParser notificationParser = new NotificationParser(wxPayAutoCertificateConfig.getRSAPublicKeyConfig());
     Transaction transaction = notificationParser.parse(requestParam,Transaction.class);
     Map<String,String> resultMap = new HashMap<>();
+
+    logger.info("支付结果通知,transaction="+ JSONObject.valueToString(transaction));
+
 
     if(Transaction.TradeStateEnum.SUCCESS!=transaction.getTradeState()){
       resultMap.put("code","FAIL");
