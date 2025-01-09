@@ -11,7 +11,7 @@ public class WxPayConfig {
     private String merchantId = "1453790202";
     private String merchantSerialNumber = "130E303509CC6C7ED2B852C3A7531ED3D951D73C";
     private String apiV3Key = "12345678abcdefgh87654321hgfedcba";
-    private String notifyUrl = "https://prod-9g8bk31o2707e168-1324294718.tcloudbaseapp.com/wxpay/payNotify";
+    private String notifyUrl = "http://t.cdjiaying.com/wxpay/payNotify";
     private String publicKeyId = "PUB_KEY_ID_0114537902022025010200388000000952";
     private String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAufJO8w4oEF+jKy9P2RGJ\n" +
             "QKU7kbfpYrcaqD0k9Rmtb6kucgyGxYjv5QljKjoYwpCfncUoRQIMxd5HOnFKz/pz\n" +
